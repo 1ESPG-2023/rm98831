@@ -1,5 +1,5 @@
 
-const liElement = document.getElementsByTagName("li");
+// const liElement = document.getElementsByTagName("li");
 
     
 
@@ -14,14 +14,26 @@ const liElement = document.getElementsByTagName("li");
 // declaração de arrays
 let nr1 = [1,2,3,4,5];
 let nr2 = [6,7,8,9,10];
-let nr3 = [nr1,nr2];
+let nr3 = [...nr1,...nr2];
 
 console.log(`Array-1 ${nr1}`);
 console.log(`Array-2 ${nr2}`);
 console.log(`Array-3 ${nr3}`);
 
 //Listando um aray! Técnica especial
-nr3.forEach((itemDoArray) =>{
-    console.log(`Array-3 sendo listado ${itemDoArray}`);
+// nr3.forEach((itemDoArray) =>{
+//     console.log(`Array-3 sendo listado ${itemDoArray}`);
+// })
+
+//Listando o array com MAP
+nr3.map((numero,key)=>{
+    console.log(`${(key+1)} - Itens do array - ${numero}`);
+    
 })
 
+const liElement = document.getElementsByTagName("li");
+console.log(liElement)
+
+liElement.
+
+console.log(nr3)
