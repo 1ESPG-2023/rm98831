@@ -31,9 +31,13 @@ nr3.map((numero,key)=>{
     
 })
 
-const liElement = document.getElementsByTagName("li");
-console.log(liElement)
+//convertando HTMLCollection em Array de forma indireta
+const liElementHtml = document.getElementsByTagName("li");
+const liElementArray = [...liElementHtml];
 
-liElement.
+liElementArray.map((item,key)=>{
+    if (item.textContent == "Item-39") {
+        console.log(`${key+1} - ${item.textContent = "LOCALIZADO"}`)
+    }
 
-console.log(nr3)
+})
