@@ -94,17 +94,76 @@ function mudaCor() {
 
 }
 
+
 mudaCor();
 
-function alteraBanner() {
+// function alteraBanner() {
 
-    let nr = Math.round(Math.random() *3)
+    
 
-    let caminho = `./img/banner-lateral-${nr}.png`;
+//     const img3 = document.querySelector(".l-e > img")
+//     const img1 = document.querySelector(".l-d > img")
 
-    const img3 = document.querySelector(".l-e > img")
-    img3.src = caminho;
+//     let nr = Math.ceil(Math.random() *3)
+//     let caminho = `./img/banner-lateral-${nr}.png`;
+//     img3.src = caminho;
 
-}
+//     nr = Math.ceil(Math.random() *3);
+//     caminho = `./img/banner-lateral-${nr}.png`;
+//     img1.src = caminho;
 
-alteraBanner();
+//     setTimeout(alteraBanner, 1000);
+
+// }
+
+// alteraBanner();
+
+
+// const botao = document.querySelector(".central button");
+
+// botao.addEventListener("click" , ()=>{
+//     const imgLampada = document.querySelector(".central img");
+    
+
+//     if(botao.textContent == "LIGAR"){
+//         imgLampada.src = "./img/pic_bulbon.gif"
+//         botao.textContent = "DESLIGAR";
+//     }else{
+//         imgLampada.src = "./img/pic_bulboff.gif"
+//         botao.textContent = "LIGAR";
+//     }
+// });
+
+// function ligaDesliga() {
+
+    // const imgLampada = document.querySelector(".central img");
+    
+
+    // if(botao.textContent == "LIGAR"){
+    //     imgLampada.src = "./img/pic_bulbon.gif"
+    //     botao.textContent = "DESLIGAR";
+    // }else{
+    //     imgLampada.src = "./img/pic_bulboff.gif"
+    //     botao.textContent = "LIGAR";
+    // }
+
+//}
+
+const inputUser = document.querySelector("input[name='nmUser']");
+const labelUser = document.querySelector("label[for]")
+
+inputUser.addEventListener("focus", ()=>{
+    inputUser.setAttribute("style", "outline-color:#ff0000");
+
+});
+
+inputUser.addEventListener("keyup", ()=>{
+    if(inputUser.value.length < 8){
+    inputUser.setAttribute("style", "outline-color:#ff0000");
+    labelUser.setAttribute("style", "color:#ff0000")
+    
+    }else{
+        inputUser.setAttribute("style", "outline-color:#dddddd");
+        labelUser.setAttribute("style", "color:#00ff00");
+    }
+});
