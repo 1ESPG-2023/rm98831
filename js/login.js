@@ -1,27 +1,39 @@
-//GERANDO DOIS OBJETOS NO LOCALTORAGE
-const usuario1 = {
-    nomeUsuaio:"predo",
-    senhaUsuario:"12345"
-}
+//GERANDO UMA LISTA DE USUARIOS
+let listaDeUsuarios = [
+    {
+        nomeCompleto : "Pedro Silva",
+        nomeUsuario : "9",
+        senhaUsuario: "123456",
+        avatarUsuario:"https://www2.fiap.com.br/FotosAlunos/A02ADF18E02E4CFFBA1DB7B235EAA910/99482.jpg"
+    },
+    {
+        nomeCompleto : "Ana Paula",
+        nomeUsuario : "9",
+        senhaUsuario: "123456",
+        avatarUsuario:"https://www2.fiap.com.br/FotosAlunos/A02ADF18E02E4CFFBA1DB7B235EAA910/98065.jpg"
+    },
+    {
+        nomeCompleto : "Henrique Rico",
+        nomeUsuario : "9",
+        senhaUsuario: "123456",
+        avatarUsuario:"https://www2.fiap.com.br/FotosAlunos/A02ADF18E02E4CFFBA1DB7B235EAA910/98831.jpg"
+    },
+    {
+        nomeCompleto : "Guilherme Hora",
+        nomeUsuario : "9",
+        senhaUsuario: "123456",
+        avatarUsuario:"https://www2.fiap.com.br/FotosAlunos/A02ADF18E02E4CFFBA1DB7B235EAA910/99499.jpg"
+    }
+];
 
-const usuario2 = {
-    nomeUsuaio:"flavindopneu",
-    senhaUsuario:"12345"
-}
+localStorage.setItem("listaUser",  JSON.stringify(listaDeUsuarios));
 
-let listaDeUsuarios = [];
-listaDeUsuarios.push(usuario1);
-listaDeUsuarios.push(usuario2);
-
-localStorage.setItem("listaUser", JSON.stringify(listaDeUsuarios));
-
-
-
-//VAMOS CRIAR UM OBJETO PARA AMAZENAR O NOSSO USUARIO
+//VAMOS CRIAR UM OBJETO PARA ARMAZENAR O NOSSO USUÁRIO
 // const usuario = {
-//     nomeUsuaio:"",
+//     nomeUsuario:"",
 //     senhaUsuario:""
 // }
+
 
 
 addEventListener("click",(evento)=>{
@@ -29,56 +41,70 @@ addEventListener("click",(evento)=>{
     evento.preventDefault();
 
     if(evento.target.id == "btnSubmit"){
-        let inputUserValue = document.querySelector("#idUser").value;
+        // let usuario = document.querySelector("#idUser").value;
+        // let senha = document.querySelector("#idPass").value;
+       
+        // RECUPERANDO DOS IMPUTS
+        let inputRMValue = document.querySelector("#idRm").value;
         let inputPassValue = document.querySelector("#idPass").value;
-
+        
         const h1Titulo = document.querySelector("#titulo");
 
         let lista = JSON.parse(localStorage.getItem("listaUser"));
 
-        let userValidado = {};
-        
-        try{ 
+
+        let userValidado = {
+   
+        };
+       
+        try{
             lista.forEach((usuario)=> {
-            
-            //VALIDAÇÂO
-            if(inputUserValue == usuario.nomeUsuaio && inputPassValue == usuario.senhaUsuario){
-            userValidado = usuario;
-            throw "VALIDADO";
-            }
+                //VALIDAÇÃO
+                if(inputRMValue == usuario.nomeUsuario && inputPassValue == usuario.senhaUsuario){
+                    userValidado = usuario;
+                    throw "VALIDADO";
+                }
             });
-        
+
+            //Caso não ocorra validação o throw é lançado para o catch com a string referente.
             throw "NÃO VALIDADO";
 
-         }catch(msg){
+        }catch(msg){
             if(msg == "VALIDADO"){
-                h1Titulo.innerHTML = "<span><strong>Login Validado com sucesso</strong></span>";
+
+                //Criando o objeto userValidado no LocalStorage
+                localStorage.setItem("user-validado",  JSON.stringify(userValidado));
+                
+                h1Titulo.innerHTML = "<span><strong>Login validado com sucesso!</strong></span>";
                 h1Titulo.setAttribute("style","color:#00ff00;");
 
-                userValidado["token"] = 
-                //setando um novo objeto no localstorage
-                localStorage.setItem("UserValidado", JSON.stringify(userValidado));
+                //Adicionando uma propriedade ao nosso objeto userValidado
+                let token = Math.random().toString(16).substring(2)+Math.random().toString(16).substring(2);
 
-                window.location.href = "../suceso.html"
+                //Atualizando o token no LocalStorage
+                localStorage.setItem("user-token",  JSON.stringify(token));
+                
+                setTimeout(()=>{
+                    //Direcionando o usuário para a página de sucesso!
+                    window.location.href = "./suceso.html";
+                }, 3000);
+
             }else{
-                h1Titulo.innerHTML = "<span><strong>Login ou Senha incorretos</strong></span>";
+                h1Titulo.innerHTML = "<span><strong>Login ou senha inválidos!</strong></span>";
                 h1Titulo.setAttribute("style","color:#ff0000;");
-                window.location.href = "../erro.html";
+                window.location.href = "./erro.html";
             }
-         }
-
+        }       
     }
-    
-
 });
 
-try{
-    const userbemvindo = document.querySelector("#userWelcome");
-    userbemvindo.innerHTML = JSON.parse(localStorage.getItem("UserValidado")).nomeUsuario;
-}catch(erro){                      
+// try{
+//     const userbemvindo = document.querySelector("#userWelcome");
+//     userbemvindo.innerHTML = JSON.parse(localStorage.getItem("UserValidado")).nomeUsuario;
+// }catch(erro){                      
 
-    if(userbemvindo != null){
+//     if(userbemvindo != null){
         
-    }
+//     }
 
-}
+// }
